@@ -31,33 +31,36 @@ public class Simulation {
         maxCustomerInQueue = 0;
     }
 
-    /**
-     * Start the simulation.
-     */
-    public void runSimulation() {
-        for (int i = 0; i < simulationLength; i++) {
+/**
+ * Start the simulation.
+ * This method runs the simulation for the specified length of time.
+ * It prompts the user for serving time for each new customer and processes the supermarket state.
+ * It also updates the total number of customers served, the total number of customers in the queue, and the maximum number of customers in the queue.
+ */
+public void runSimulation() {
+    for (int i = 0; i < simulationLength; i++) {
 
-            System.out.println("At the beginning of iteration " + (i + 1) + "...");
-            int servingTime = getInput(scanner, "Input serving time for a new customer:", "Serving time cannot be negative");;
+        System.out.println("At the beginning of iteration " + (i + 1) + "...");
+        int servingTime = getInput(scanner, "Input serving time for a new customer:", "Serving time cannot be negative");
 
-            if (servingTime > 0) {
-                supermarket.checkOut(new Customer(servingTime));
-                ++totalCustomerServed;
-            }
-            supermarket.process(i + 1);
+        if (servingTime > 0) {
+            supermarket.checkOut(new Customer(servingTime));
+            ++totalCustomerServed;
+        }
+        supermarket.process(i + 1);
 
-            System.out.println("After " + (i + 1) + " minute ##");
-            for (int j = 0; j < counter; j++) {
-                System.out.print("    Teller_" + (j + 1) + "[" + supermarket.getCustomerLeaveTime(j) + "]    ");
-            }
-            System.out.print("  Waiting Queue:" + supermarket.getWaitingQueue() + "\n\n");
+        System.out.println("After " + (i + 1) + " minute ##");
+        for (int j = 0; j < counter; j++) {
+            System.out.print("    Teller_" + (j + 1) + "[" + supermarket.getCustomerLeaveTime(j) + "]    ");
+        }
+        System.out.print("  Waiting Queue:" + supermarket.getWaitingQueue() + "\n\n");
 
-            totalCustomerInQueue += supermarket.getWaitingQueueSize();
-            if (supermarket.getWaitingQueueSize() > maxCustomerInQueue) {
-                maxCustomerInQueue = supermarket.getWaitingQueueSize();
-            }
+        totalCustomerInQueue += supermarket.getWaitingQueueSize();
+        if (supermarket.getWaitingQueueSize() > maxCustomerInQueue) {
+            maxCustomerInQueue = supermarket.getWaitingQueueSize();
         }
     }
+}
 
     public int getTotalCustomerServed() {
         return totalCustomerServed;
