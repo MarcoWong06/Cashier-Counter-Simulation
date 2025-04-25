@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2025, WONG Sai Lung. All rights reserved.
  * @author WONG, Sai Lung
- * @version v1.0.0
+ * @version v1.0.1
  */
 public class Teller {
 
@@ -9,7 +9,7 @@ public class Teller {
     Customer customerServing;
 
     /**
-     * Create a new teller in supermarket.
+     * Create a new teller in a supermarket.
      */
     public Teller() {
         this.serveTimeRemaining = 0;
